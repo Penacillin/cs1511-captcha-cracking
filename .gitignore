@@ -1,2 +1,6 @@
 *.o
 **/.vs
+crack
+crack_captcha
+test_bounding_box
+test_copy_pixels

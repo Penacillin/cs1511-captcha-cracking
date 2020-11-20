@@ -27,27 +27,28 @@ For now, I will go back and analyze the single digit cracking for a bit longer, 
 # Finshing off the digits for now...
 Finally, individual digit cracking seems reasonably decent to continue on with the rest of the solution. The digits now use 25 metrics:
 
-Horizontal balance
-Vertical Balance
-Tallness
-Hole size fraction
-Holes
-Density
-Maximum vertical fraction
-Maximum horizontal fraction
-Average width fraction
-Middle Left density
-Bottom right density
-Vertical Position of hole
-Standard deviation of horizontal balance
-Average distance until three strokes
-Horizontal balance of top half of image
-Steepest fall over one pixel top left, bottom right, middle left
-Bottom Horizontal balance
-Deepest pixel of left bottom of image
-Vertical lines in bottom of image
-Max difference of lengths of vertical strokes on bottom half of image
-Biggest horizontal delta of bottom left, bottom right, and top right of image
+- Horizontal balance
+- Vertical Balance
+- Tallness
+- Hole size fraction
+- Holes
+- Density
+- Maximum vertical fraction
+- Maximum horizontal fraction
+- Average width fraction
+- Middle Left density
+- Bottom right density
+- Vertical Position of hole
+- Standard deviation of horizontal balance
+- Average distance until three strokes
+- Horizontal balance of top half of image
+- Steepest fall over one pixel top left, bottom right, middle left
+- Bottom Horizontal balance
+- Deepest pixel of left bottom of image
+- Vertical lines in bottom of image
+- Max difference of lengths of vertical strokes on bottom half of image
+- Biggest horizontal delta of bottom left, bottom right, and top right of image
+
 These metrics probably need more evaluation and testing later.
 
 For now, I'll move onto the captcha part of the solution.
@@ -57,12 +58,13 @@ Of course, theoretically, the captcha part is a simple extension of the digit pr
 # Continuing on the plan, hail Mary for some progress, and thinking ahead
 Going off where I left off, I continue with another 6 metrics. These are
 
-Ratio of vertical position of midpoint of a hole (if one exists)
-Standard definition of horizontal balance
-Mean distance from left side until there are 3 lines intersected in that column
-Horizontal balance of the top half of the image
-Steepest slope when tracing the image from the top left
-Steepest slope when tracing the image from the bottom right
+- Ratio of vertical position of midpoint of a hole (if one exists)
+- Standard definition of horizontal balance
+- Mean distance from left side until there are 3 lines intersected in that column
+- Horizontal balance of the top half of the image
+- Steepest slope when tracing the image from the top left
+- Steepest slope when tracing the image from the bottom right
+
 Each metric was created as I was targeting specific digits. For example, the vertical position of the hole would differentiate 6's and 9's. The deviation of the horizontal balance differentiates 7's and 1's. Horizontal Balance of the top half of the image helps separate 5's and 3's. On a note, I noticed 5's and 3's are very hard to differentiate, as they are practically the same except for the vertical line on the top half of the image being either the left or right. Hence, I created the steepest slope from top left of image. This would product a steep slope for a 3, and virtually no slope for a 5.
 
 It was good to see that after adding these metrics, to make a total of 17 metrics, the success rates for most digits are mostly acceptable. However 3 continues to be a problem. It seems to be mostly confused with 2's and 1's. Seeing the 2's, I'll add a steepest slope for the bottom left of the image, since 2 has a smooth fall there instead of 3's sharp fall.
